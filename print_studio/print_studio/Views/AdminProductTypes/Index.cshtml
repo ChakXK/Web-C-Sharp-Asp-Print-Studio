@@ -1,0 +1,77 @@
+﻿@model IEnumerable<print_studio.Models.ProductType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Изделия</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Номер
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sq_m)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.days)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            Цвет
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.material)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.sq_m)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.days)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.price)
+    </td>
+    <td>
+        @foreach (var color in item.ColorsProducts)
+        {
+            <p>@Html.DisplayFor(name => color.color) </p>
+        }
+    </td>
+    <td>
+        @Html.ActionLink("Редактировать", "Edit", new { id = item.id })
+        @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+    </td>
+</tr>
+}
+
+</table>

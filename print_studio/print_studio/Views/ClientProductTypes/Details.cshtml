@@ -1,0 +1,114 @@
+﻿@model print_studio.Models.ProductType
+
+@{
+    ViewBag.Title = "Details";
+}
+<!-- product section -->
+<section class="product-section">
+    <div class="container">
+        <div class="back-link">
+            <a href="/"> &lt;&lt; Вернуться на домашнюю страницу</a>
+        </div>
+        @using (Html.BeginForm("View", "ClientProductTypes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-pic-zoom">
+                        <img class="product-big-img" src="@Url.Content("~/Content/userfiles/" + @Model?.ColorsProducts.First().Image.id+
+                         @Model?.ColorsProducts.First().Image.name)" alt="">
+                    </div>
+                    <div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
+                        <div class="product-thumbs-track">
+                            <div class="pt active" data-imgbigurl="@Url.Content("~/Content/userfiles/" + @Model?.ColorsProducts?.First().Image.id+
+                         @Model?.ColorsProducts?.First().Image.name)">
+                                <label>
+                                    <input type="radio" name="idColor" value=@Model.ColorsProducts.First().id checked />
+                                    <img src="@Url.Content("~/Content/userfiles/" + @Model.ColorsProducts.First().Image.id+
+                         @Model.ColorsProducts.First().Image.name)" alt="">
+                                </label>
+                            </div>
+                            @foreach (var item in Model.ColorsProducts.Skip(1).ToList())
+                            {
+                                <div class="pt" data-imgbigurl="@Url.Content("~/Content/userfiles/" + @item.Image.id+
+                         @item.Image.name)">
+                                    <label>
+                                        <input type="radio" name="idColor" value=@item.id />
+                                        <img src="@Url.Content("~/Content/userfiles/" + @item.Image.id+
+                         @item.Image.name)" alt="">
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 product-details">
+                    <h2 class="p-title">@Model.name</h2>
+                    <h3 class="p-price">@Model.price руб.</h3>
+                    <div class="fw-size-choose">
+                        <div class="sc-item">
+                            <input type="radio" name="idSize" value="34">
+                            <label>34</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="idSize" id="m-size" value="36" checked="">
+                            <label for="m-size">36</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="idSize" id="l-size" value="38">
+                            <label for="l-size">38</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="idSize" id="xl-size" value="40">
+                            <label for="xl-size">40</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="idSize" id="xxl-size" value="42">
+                            <label for="xxl-size">42</label>
+                        </div>
+                    </div>
+                    <h3 class="p-price">Загрузите изображения на изделия</h3>
+                    <div class="sidebar-box col text-center">
+                        <div class="form-group">
+                            <div class="quantity">
+                                <input type="file" name="upload" class="site-btn sb-dark sb-line" /> <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quantity">
+                        <input type="submit" value="ПРИМЕРИТЬ" class="site-btn" />
+                    </div>
+                    <div id="accordion" class="accordion-area">
+                        <div class="panel">
+                            <div class="panel-header" id="headingOne">
+                                <button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">information</button>
+                            </div>
+                            <div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="panel-body">
+                                    <p>Сроки пошива: @Model.days</p>
+                                    <p>Материал: @Model.material</p>
+                                    <p> @Model.description</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
+                                    <p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8"</p>
+                                    <p><h3>Рекомендовано загрузка изображения квадратной формы</h3></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<!-- product section end -->
+
+<!--====== Javascripts & Jquery ======-->
+<script src="~/Contentjs/js/jquery-3.2.1.min.js"></script>
+<script src="~/Contentjs/js/bootstrap.min.js"></script>
+<script src="~/Contentjs/js/jquery.slicknav.min.js"></script>
+<script src="~/Contentjs/js/owl.carousel.min.js"></script>
+<script src="~/Contentjs/js/jquery.nicescroll.min.js"></script>
+<script src="~/Contentjs/js/jquery.zoom.min.js"></script>
+<script src="~/Contentjs/js/jquery-ui.min.js"></script>
+<script src="~/Contentjs/js/main.js"></script>
+

@@ -1,0 +1,103 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Linq;
+@using System.Threading.Tasks;
+@using System.Net;
+@using System.Web;
+@using System.Web.Mvc;
+@using print_studio.Models;
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <!-- Page Preloder -->
+                    ApplicationDbContext db = new ApplicationDbContext();
+                    var newcount = db.PrintOrders.Where(o => o.OrderStatu.name == "Новый").Count();
+        <div id="preloder">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Header section -->
+        <header class="header-section">
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2 text-center text-lg-left">
+                            <!-- logo -->
+                            <a href="/" class="site-logo">
+                                <img src="~/Content/img/logo.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="user-panel">
+                                <div class="up-item">
+                                    <i class="flaticon-profile"></i>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="main-navbar">
+                <div class="container">
+                    <!-- menu -->
+                    <ul class="main-menu">
+                        <li><a href="/">Домашняя страница</a></li>
+                        <li><a href="/AdminPrintOrders">Заказы <span class="new">+@newcount</span></a></li>
+
+                        <li>
+                            <a href="/AdminProductTypes">Изделия</a>
+                            <ul class="sub-menu">
+                                <li><a href="/AdminProductTypes">Все</a></li>
+                                <li><a href="/AdminProductTypes/Create">Добавить</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Header section end -->
+    }
+}
+else
+{
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header section -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 text-center text-lg-left">
+                        <!-- logo -->
+                        <a href="/" class="site-logo">
+                            <img src="~/Content/img/logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="user-panel">
+                            <div class="up-item">
+                                <i class="flaticon-profile"></i>
+                                @Html.ActionLink("Для менеджеров", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-navbar">
+            <div class="container">
+                <!-- menu -->
+                <ul class="main-menu">
+                    <li><a href="/">Домашняя страница</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Header section end -->
+
+}

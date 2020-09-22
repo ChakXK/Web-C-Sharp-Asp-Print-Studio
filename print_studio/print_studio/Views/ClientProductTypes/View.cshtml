@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+@Html.Partial("_banner")
+        <!-- product section -->
+        <section class="product-section">
+            <div class="container">
+                <div class="back-link">
+                </div>
+
+
+                @using (Html.BeginForm("Create", "ClientProductTypes", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <input name="idColor" type="hidden" value=@ViewBag.idColor />
+                        <input name="idSize" type="hidden" value=@ViewBag.idSize />
+                        <input name="file" type="hidden" value=@ViewBag.file />
+
+                        <div class="col-lg-6">
+                            <div class="product-pic-zoom">
+                                <img class="product-big-img" src="@Url.Content("~/Content/temp/" + ViewBag.file)" width="760" height="750">
+                            </div>
+                            <div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
+
+                            </div>
+                        </div>
+                       
+                        <div class="col-lg-6 product-details">
+                            <p></p><p></p><p></p>
+                            <h2 class="p-title">@ViewBag.product.ProductType.name</h2>
+                            <h3 class="p-price">@ViewBag.product.ProductType.price руб.</h3>
+                            <h3 class="p-price">Сроки пошива: @ViewBag.product.ProductType.days</h3>
+                            <div class="quantity">
+                                <input type="submit" value="КУПИТЬ" class="site-btn" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </section>
+        <!-- product section end -->
+        <div>
+            @Html.ActionLink("Вернуться на главную", "Index")
+        </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

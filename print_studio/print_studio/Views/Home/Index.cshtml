@@ -1,0 +1,77 @@
+﻿@model IEnumerable<print_studio.Models.ProductType>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.Partial("_banner")
+
+
+<!-- Features section -->
+<section class="features-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 p-0 feature">
+                <div class="feature-inner">
+                    <div class="feature-icon">
+
+                    </div>
+                    <h2>СОЗДАТЬ</h2>
+                </div>
+            </div>
+            <div class="col-md-4 p-0 feature">
+                <div class="feature-inner">
+                    <div class="feature-icon">
+                        <img src="~/Content/img/icons/2.png" alt="#">
+                    </div>
+                    <h2>ДИЗАЙН</h2>
+                </div>
+            </div>
+            <div class="col-md-4 p-0 feature">
+                <div class="feature-inner">
+                    <div class="feature-icon">
+
+                    </div>
+                    <h2>ПРОСТО</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Features section end -->
+<!-- letest product section -->
+<section class="top-letest-product-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>ВЫБЕРИ ИЗДЕЛИЯ</h2>
+        </div>
+        <div class="product-slider owl-carousel">
+            @foreach (var item in Model)
+            {
+                <div class="product-item">
+                    <div class="pi-pic">
+                        <img src="@Url.Content("~/Content/userfiles/" + @item?.ColorsProducts?.First().Image.id+
+                         @item?.ColorsProducts?.First().Image.name)" alt="">
+                        <div class="pi-links">
+                            <a href="/ClientProductTypes/Details?id=@item.id" class="add-card"><i class="flaticon-bag"></i><span>Добавить принт</span></a>
+                        </div>
+                    </div>
+                    <div class="pi-text">
+                        <h6>@item.price руб.</h6>
+                        <p>@item.name </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+<script src="~/Contentjs/jquery-3.2.1.min.js"></script>
+<script src="~/Contentjs/bootstrap.min.js"></script>
+<script src="~/Contentjs/jquery.slicknav.min.js"></script>
+<script src="~/Contentjs/owl.carousel.min.js"></script>
+<script src="~/Contentjs/jquery.nicescroll.min.js"></script>
+<script src="~/Contentjs/jquery.zoom.min.js"></script>
+<script src="~/Contentjs/jquery-ui.min.js"></script>
+<script src="~/Contentjs/main.js"></script>

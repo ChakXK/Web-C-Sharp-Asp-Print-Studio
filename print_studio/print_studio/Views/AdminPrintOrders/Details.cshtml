@@ -1,0 +1,89 @@
+﻿@model print_studio.Models.PrintOrder
+
+
+    <div class="container">
+        <h2>Подробно</h2>
+
+        <div>
+            <h4> @Html.DisplayNameFor(model => model.id) : @Html.DisplayFor(model => model.id)</h4>
+            <hr />
+            <img src=@Url.Content("~/Content/userfiles/" + Model.SavedProduct?.Image.id+Model.SavedProduct?.Image.name)>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.OrderStatu.name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OrderStatu.name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Size.name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Size.name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.surname)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.surname)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.adress)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.adress)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.phone)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.phone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.count)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.count)
+                </dd>
+                <dt>
+                    Менеджер
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Employee.Email)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Редактировать", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Вернуться назад", "Index")
+        </p>
+    </div>

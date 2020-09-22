@@ -1,0 +1,89 @@
+﻿@model IEnumerable<print_studio.Models.PrintOrder>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<section class="category-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 order-2 order-lg-1">
+                <div class="filter-widget">
+                    <h2 class="fw-title">Фильтр статусов</h2>
+                    <ul class="categories">
+                    </ul>
+                    <ul class="category-menu">
+                        @foreach (var st in ViewBag.statuses)
+                        {
+                            <li><a href="/AdminPrintOrders/Index?idstatus=@st.id">@st.name</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <h2>Заказы</h2>
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.OrderStatu.name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.date)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.adress)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.phone)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </th>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OrderStatu.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.date)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.adress)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.phone)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Редактировать", "Edit", new { id = item.id })
+                                        @Html.ActionLink("Детально", "Details", new { id = item.id })
+                                        @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

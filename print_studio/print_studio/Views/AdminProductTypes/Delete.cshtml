@@ -1,0 +1,23 @@
+﻿@model print_studio.Models.ProductType
+
+@{
+    ViewBag.Title = "Delete";
+}
+    <div class="container">
+        <h2>Удаление</h2>
+
+        <h3>Подтвердите удаления?</h3>
+        <div>
+            <h4> @Html.DisplayNameFor(model => model.id): @Html.DisplayFor(model => model.id)</h4>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Подтвердить" class="btn btn-default" /> |
+                    @Html.ActionLink("Отмена", "Index", new {id=ViewBag.id })
+                </div>
+            }
+        </div>
+    </div>

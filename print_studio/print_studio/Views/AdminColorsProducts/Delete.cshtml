@@ -1,0 +1,23 @@
+﻿@model print_studio.Models.ColorsProduct
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+    <div class="container">
+        <h2>Удаления</h2>
+
+        <h3>Подтвердите удаления?</h3>
+        <div>
+            <h4>Цвет: @Model.color изделия №@Model.id_producttype</h4>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-actions no-color">
+                    <input type="submit" value="Удалить" class="btn btn-default" /> |
+                    @Html.ActionLink("Отмена", "Index", new { id = Model.id_producttype })
+                </div>
+            }
+        </div>
+    </div>

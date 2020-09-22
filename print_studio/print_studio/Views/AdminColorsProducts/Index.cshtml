@@ -1,0 +1,55 @@
+﻿@model IEnumerable<print_studio.Models.ColorsProduct>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <h2>Цвета изделия : @ViewBag.id</h2>
+
+<p>
+    @Html.ActionLink("Добавить новый", "Create", new { id = @ViewBag.id })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Изображение
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductType.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.color)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @if (item.Image == null)
+                {<img src=@Url.Content("~/Content/img/no-photo.jpg") width="100" height="100">}
+                else
+                {
+                    <img src=@Url.Content("~/Content/userfiles/" + @item.Image.id+@item.Image.name) width="100" height="100">
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductType.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.color)
+            </td>
+            <td>
+                @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Вернуться назад", "Edit", "AdminProductTypes", new { id=ViewBag.id}, null)
+</div>
